@@ -1,0 +1,27 @@
+{
+  "name": "smartchef-contract",
+  "version": "1.0.0",
+  "scripts": {
+    "local": "truffle migrate --network development --reset",
+    "testnet": "truffle migrate --network bsctest --reset --f 2 && truffle run verify SmartChef --network bsctest",
+    "mainnet": "truffle migrate --network bsc --reset --f 2 && truffle run verify SmartChef --network bsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrijana/smartchef-contract.git"
+  },
+  "author": "Digbijaya Shakya",
+  "license": "MIT",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^3.4.1",
+    "@openzeppelin/test-environment": "^0.1.9",
+    "@openzeppelin/test-helpers": "^0.5.12",
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "dotenv": "^10.0.0",
+    "prettier": "^2.3.2",
+    "truffle-plugin-verify": "^0.5.11"
+  },
+  "dependencies": {
+    "web3": "^1.4.0"
+  }
+}
