@@ -2,9 +2,15 @@
   "name": "smartchef-contract",
   "version": "1.0.0",
   "scripts": {
-    "local": "truffle migrate --network development --reset",
-    "testnet": "truffle migrate --network bsctest --reset --f 2 && truffle run verify SmartChef --network bsctest",
-    "mainnet": "truffle migrate --network bsc --reset --f 2 && truffle run verify SmartChef --network bsc"
+    "clean": "rm -rf ./build && rm -rf ./types/truffle-contracts",
+    "compile": "yarn clean && truffle compile && typechain --target=truffle-v5 'build/contracts/*.json'",
+    "build": "rm -rf ./dist && rm -f tsconfig.tsbuildinfo && ttsc",
+    "migrate": "yarn build && truffle migrate",
+    "migrate:bsctestnet": "NODE_APP_INSTANCE=bsctestnet yarn migrate --network bsctestnet",
+    "migrate:bscmainnet": "NODE_ENV=production NODE_APP_INSTANCE=bscmainnet yarn migrate --network bscmainnet",
+    "verify": "truffle run verify --license MIT",
+    "verify:bsctestnet": "NODE_APP_INSTANCE=bsctestnet yarn verify --network bsctestnet",
+    "verify:bscmainnet": "NODE_ENV=production NODE_APP_INSTANCE=bscmainnet yarn verify --network bscmainnet"
   },
   "repository": {
     "type": "git",
@@ -17,9 +23,18 @@
     "@openzeppelin/test-environment": "^0.1.9",
     "@openzeppelin/test-helpers": "^0.5.12",
     "@truffle/hdwallet-provider": "^1.4.1",
+    "@typechain/truffle-v5": "2.0.2",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "config": "^3.3.2",
     "dotenv": "^10.0.0",
     "prettier": "^2.3.2",
-    "truffle-plugin-verify": "^0.5.11"
+    "truffle": "^5.1.50",
+    "truffle-plugin-verify": "^0.5.11",
+    "ts-node": "^10.2.0",
+    "ttypescript": "^1.5.12",
+    "typechain": "2.0.0",
+    "typechain-target-truffle": "1.0.2",
+    "typescript": "^4.1.2"
   },
   "dependencies": {
     "web3": "^1.4.0"
